@@ -247,7 +247,9 @@ namespace LogicText
                         $"8 - NAnd Gate" + Environment.NewLine +
                         $"9 - NOr Gate" + Environment.NewLine +
                         $"0 - XNOr Gate" + Environment.NewLine +
+                        $"Q - 7 Segment dumb display" + Environment.NewLine +
                         $"Right Click - Deselect selection" + Environment.NewLine +
+                        $"Re link 2 nodes to remove link, sometimes(buggy)" + Environment.NewLine +
                         $"W A S D - Camera movement" + Environment.NewLine,
                         10, 64, 10, Raylib.DARKGRAY);
 

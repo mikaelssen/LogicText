@@ -6,7 +6,7 @@ namespace LogicText
 {
 
     /// <summary>
-    /// Only True if clicked to be True
+    /// Displays segments
     /// </summary>
     [Serializable]
     public class SegmentDisplay : Node
