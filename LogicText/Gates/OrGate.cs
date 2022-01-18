@@ -1,13 +1,16 @@
 ﻿using Raylib_CsLo;
 using System;
 using System.Numerics;
+using LogicText.Linking;
 
 namespace LogicText
 {
+    /// <summary>
+    /// True if any input is True
+    /// </summary>
     [Serializable]
     public class OrGate : Node
     {
-
 
         public OrGate()
         {

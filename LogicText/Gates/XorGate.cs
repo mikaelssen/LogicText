@@ -1,12 +1,12 @@
 ﻿using Raylib_CsLo;
 using System;
+using LogicText.Linking;
+
 namespace LogicText
 {
     [Serializable]
     public class XorGate : Node
     {
-
-
         public XorGate()
         {
                 GateName = "#39# Xor Gate";

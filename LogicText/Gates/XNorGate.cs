@@ -1,12 +1,11 @@
-﻿using Raylib_CsLo;
+﻿using LogicText.Linking;
+using Raylib_CsLo;
 using System;
 namespace LogicText
 {
     [Serializable]
     public class XNorGate : Node
     {
-
-
         public XNorGate()
         {
                 GateName = "#119# XNor Gate";

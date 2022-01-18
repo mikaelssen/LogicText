@@ -1,9 +1,14 @@
-﻿using Raylib_CsLo;
+﻿using LogicText.Linking;
+using Raylib_CsLo;
 using System;
 using System.Numerics;
+using LogicText.Linking;
 
 namespace LogicText
 {
+    /// <summary>
+    /// Reverse Or Gate
+    /// </summary>
     [Serializable]
     public class NOrGate : Node
     {

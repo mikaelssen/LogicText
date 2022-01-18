@@ -1,14 +1,16 @@
 ﻿using Raylib_CsLo;
 using System;
 using System.Numerics;
+using LogicText.Linking;
 
 namespace LogicText
 {
+    /// <summary>
+    /// True if input is False.
+    /// </summary>
     [Serializable]
     public class NotGate : Node
     {
-
-
         public NotGate()
         {
             Size = new Vector2(120, 145);

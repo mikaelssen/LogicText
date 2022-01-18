@@ -9,62 +9,7 @@
     using System.Linq;
     using System.Text.Json.Serialization;
     using System.ComponentModel;
-
-    [Serializable]
-    public static class Linker
-    {
-
-        public static Input? Input = null;
-        public static Node? InputNode = null;
-
-        public static Output? Output = null;
-        public static Node? OutputNode = null;
-
-
-        public static void Deselect()
-        {
-            Input = null; 
-            Output = null;
-        }
-
-        public static void Connect()
-        {
-            if (Input != null && Output != null && InputNode != null && OutputNode != null)
-            {
-                if (Input.RefNode != Output.RefNode)
-                {
-                    InputNode.InputLinks.Add(new LinkedLink() { LinkInput = Input, LinkOutput = Output });
-                    OutputNode.OutputLinks.Add(new LinkedLink() { LinkInput = Input, LinkOutput = Output });
-                    Console.WriteLine($"Linked {Input} and {Output}");
-                }
-                else
-                    Console.WriteLine($"Possible self linking discovered, stopping.");
-                
-                Input = null;
-                Output = null;
-                InputNode = null;
-                OutputNode = null;
-
-            }
-        }
-
-        public static void DeleteNodeLinks(Node target)
-        {
-            foreach (var item in target.InputLinks)
-            {
-                item.LinkOutput.RefNode.OutputLinks.RemoveAll(l => l.LinkOutput.ID == item.LinkOutput.ID);
-                item.LinkOutput.RefNode.InputLinks.RemoveAll(l => l.LinkOutput.ID == item.LinkOutput.ID);
-            }
-            foreach (var item in target.OutputLinks)
-            {
-                item.LinkInput.RefNode.OutputLinks.RemoveAll(l => l.LinkInput.ID == item.LinkInput.ID);
-                item.LinkInput.RefNode.InputLinks.RemoveAll(l => l.LinkInput.ID == item.LinkInput.ID);
-            }
-
-            target.InputLinks.Clear();
-            target.OutputLinks.Clear();
-        }
-    }
+    using LogicText.Linking;
 
     public class StandinVector2
     {
@@ -156,9 +101,11 @@
 
         public virtual void Draw()
         {
+            //Whenever or not the exit button per node is clicked.
             ExitWindow = RayGui.GuiWindowBox(new Rectangle(Position.X, Position.Y, Size.X, Size.Y), GateName);
-       
 
+
+            //Handle GUI Inputs clicking, yes it's the draw method, but this is where we do be doing it
             for (int i = 0; i < Inputs.Count; i++)
             {
                 Rectangle r = new Rectangle(Position.X, Position.Y + 40 + (i * 25), 40, 25);
@@ -173,6 +120,7 @@
                 }
             }
 
+            //Handle GUI Outputs clicking, yes it's the draw method, but this is where we do be doing it
             for (int i = 0; i < Outputs.Count; i++)
             {
                 Rectangle r = new Rectangle(Position.X + Size.X - 40, Position.Y + 40 + (i * 25), 40, 25);
@@ -186,62 +134,19 @@
                 }
             }
 
+            //Gotta draw that wavy line for every output. no need to draw inputs, as they all correlate.
             foreach (var l in OutputLinks)
             {
                 if (l.LinkOutput != null && l.LinkInput != null)
                     Raylib.DrawLineBezier(new Vector2((int)(l.LinkOutput.Rec.X + l.LinkOutput.Rec.width), (int)(l.LinkOutput.Rec.Y + (l.LinkOutput.Rec.height / 2))), new Vector2((int)(l.LinkInput.Rec.X + (l.LinkInput.Rec.width / 2)), (int)l.LinkInput.Rec.Y + (int)(l.LinkInput.Rec.height / 2)), 2, l.LinkInput.Value ? Raylib.RED : Raylib.BLACK);
             }
 
+            //Draw the gate outputvalue to the center of the gate. Usefull for debugging, all gates do this by default.
             Raylib.DrawText($"{OutPutValue}", Position.X + (Size.X / 2), Position.Y + 30, 8, OutPutValue == 1 ? Raylib.GREEN : Raylib.RED);
 
             //Raylib.DrawRectangleLines((int)Position.X, (int)Position.Y, (int)Size.X - 25, 23, Raylib.RED);
 
         }
 
-    }
-
-    [Serializable]
-    [TypeConverter(typeof(Link))]
-    public class Input : Link
-    {
-        public Input() { }
-        public Input(int id)
-        {
-            ID = id;
-        }
-    }
-
-    [Serializable]
-    [TypeConverter(typeof(Link))]
-    public class Output : Link
-    {
-        public Output() { }
-        public Output(int id)
-        {
-            ID = id;
-        }
-    }
-
-    [Serializable]
-    public class LinkedLink
-    {
-        public Link? LinkInput { get; set; }
-        public Link? LinkOutput { get; set; }
-    }
-
-    [Serializable]
-    public class Link
-    {
-        public Link(){}
-        public Link(int id)
-        {
-            ID = id;
-        }
-
-        public bool Value { get; set; }
-        public bool Clicked { get; set; }
-        public Rectangle Rec { get; set; }
-        public Node? RefNode { get; set; }
-        public int ID { get; set; }
     }
 }

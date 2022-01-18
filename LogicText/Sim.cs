@@ -7,6 +7,7 @@ using System.IO;
 using Raylib_CsLo;
 using System.Numerics;
 using Newtonsoft.Json;
+using LogicText.Linking;
 
 namespace LogicText
 {
