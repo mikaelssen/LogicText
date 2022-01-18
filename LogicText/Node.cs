@@ -66,6 +66,9 @@
             Outputs = new List<Output>();
         }
 
+        /// <summary>
+        /// Used to updated the nodes logic, only fierd from other nodes. 'simulates signal delay' sort of
+        /// </summary>
         public virtual void StepUpdate()
         {
         }

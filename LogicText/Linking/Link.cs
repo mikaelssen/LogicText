@@ -43,7 +43,7 @@
             ID = id;
         }
 
-        public bool Value { get; set; }
+        public bool Value { get; set; } = false;
         public bool Clicked { get; set; }
         public Rectangle Rec { get; set; }
         public Node? RefNode { get; set; }

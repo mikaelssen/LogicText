@@ -4,6 +4,9 @@ using LogicText.Linking;
 
 namespace LogicText
 {
+    /// <summary>
+    /// Only Ture if one input is True.
+    /// </summary>
     [Serializable]
     public class XorGate : Node
     {

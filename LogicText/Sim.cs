@@ -98,7 +98,7 @@ namespace LogicText
 
                 if (Raylib.IsKeyPressed(KeyboardKey.KEY_TWO))
                 {
-                    nodes.Add(new ButtonGate(0,1)
+                    nodes.Add(new Button(0,1)
                     {
                         Position = Raylib.GetScreenToWorld2D(Raylib.GetMousePosition(), camera),
                         Size = new Vector2(120, 100)
@@ -175,6 +175,15 @@ namespace LogicText
                     {
                         Position = Raylib.GetScreenToWorld2D(Raylib.GetMousePosition(), camera),
                         Size = new Vector2(120, 100)
+                    });
+                }
+
+                if (Raylib.IsKeyPressed(KeyboardKey.KEY_Q))
+                {
+                    nodes.Add(new SegmentDisplay(7,0)
+                    {
+                        Position = Raylib.GetScreenToWorld2D(Raylib.GetMousePosition(), camera),
+                        Size = new Vector2(180, 300)
                     });
                 }
 

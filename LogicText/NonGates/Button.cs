@@ -5,15 +5,20 @@ using System;
 namespace LogicText
 {
 
+    /// <summary>
+    /// Only True if clicked to be True
+    /// </summary>
     [Serializable]
-    public class ButtonGate : Node
+    public class Button : Node
     {
-        public ButtonGate()
+
+
+        public Button()
         {
                 GateName = "#129# Button Gate";
         }
 
-        public ButtonGate(int InputCount = 0, int OutputCount = 1) : this()
+        public Button(int InputCount = 0, int OutputCount = 1) : this()
         {
             for (int i = 0; i < InputCount; i++)
                 Inputs.Add(new Input(i));
@@ -32,6 +37,7 @@ namespace LogicText
                     OutPutValue--;
                 else
                     OutPutValue++;
+
         }
         public override void StepUpdate()
         {

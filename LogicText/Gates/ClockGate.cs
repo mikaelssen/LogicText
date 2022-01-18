@@ -20,11 +20,6 @@ namespace LogicText
                 Outputs.Add(new Output(i));
             lastTime = DateTime.UtcNow;
         }
-        public override void Draw()
-        {
-            base.Draw();
-
-        }
         public override void StepUpdate()
         {
             if ((DateTime.UtcNow - lastTime ).TotalSeconds >= 1)
